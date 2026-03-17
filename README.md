@@ -4,6 +4,8 @@ Five elemental tridents for Luanti, each with unique combat effects and passive 
 
 ![screenshot1](./docs/trident.png)
 
+<video src="./docs/demo.mp4" controls width="600"></video>
+
 ## Tridents
 
 ### Fire Trident
