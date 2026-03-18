@@ -10,23 +10,24 @@ Five elemental tridents for Luanti, each with unique combat effects and passive 
 - Ignites targets on hit (1 damage/sec for 5 seconds)
 - +2 damage buff when wielded
 - **Immunity to fire/lava damage** while in inventory
-- Craft: diamond, torch, obsidian, stick
+- Dropped by **Inferno Titan** boss
 
 ### Lightning Trident
 - Strikes lightning on hit with thunder and sky flash
 - Sets the ground on fire at the strike point
 - **Immunity to lightning damage** while in inventory
-- Craft: diamond, mese crystal, steel ingot, stick
+- Dropped by **Storm Colossus** boss
 
 ### Wither Trident
-- Applies fast wither effect (2 damage every 0.5s for 4 seconds)
+- Applies wither effect that deals **true damage** (bypasses armor)
+- 2 damage every 0.5s for 4 seconds
 - Fastest swing speed of all tridents
-- Craft: diamond, obsidian x2, stick
+- Dropped by **Void Reaper** boss
 
 ### Support Trident
 - Heals you equal to damage dealt on each hit
 - Right-click for full heal (30 second cooldown)
-- Craft: diamond, mese crystal, apple, stick
+- Dropped by **Life Warden** boss
 
 ### Master Trident
 - All powers combined: fire, lightning, wither, and lifesteal
@@ -44,6 +45,10 @@ Five elemental tridents for Luanti, each with unique combat effects and passive 
 | Wither | 9 | 0.8s | 220 | 2 |
 | Support | 6 | 1.0s | 300 | 4 |
 | Master | 12 | 0.8s | 500 | 10 |
+
+## How to obtain
+
+Fire, Lightning, Wither, and Support tridents are **boss drops only** — defeat bosses from the Infectious mod to earn them. The Master Trident is crafted by combining all four tridents with a diamond and mese block.
 
 ## Dependencies
 

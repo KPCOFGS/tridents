@@ -185,15 +185,25 @@ core.register_globalstep(function(dtime)
                 withering_entities[key] = nil
             elseif wither.timer >= WITHER_TICK_INTERVAL then
                 wither.timer = 0
-                local hp = obj:get_hp()
-                if hp and hp > 0 then
-                    -- Use punch so mob APIs handle death + drops properly
-                    obj:punch(obj, 1.0, {
-                        full_punch_interval = 1.0,
-                        damage_groups = {fleshy = WITHER_DAMAGE},
-                    }, nil)
-                    spawn_wither_particles(obj:get_pos(), nil)
+                -- True damage: bypass armor by directly subtracting _hp if available
+                local ent = not obj:is_player() and obj:get_luaentity() or nil
+                if ent and ent._hp then
+                    ent._hp = ent._hp - WITHER_DAMAGE
+                    if ent._hp <= 0 then
+                        -- Trigger death via punch
+                        obj:punch(obj, 1.0, {
+                            full_punch_interval = 1.0,
+                            damage_groups = {fleshy = 1},
+                        }, nil)
+                    end
+                else
+                    -- Players and normal entities: use set_hp for true damage
+                    local hp = obj:get_hp()
+                    if hp and hp > 0 then
+                        obj:set_hp(hp - WITHER_DAMAGE, {type = "set_hp", wither = true})
+                    end
                 end
+                spawn_wither_particles(obj:get_pos(), nil)
             end
         end
     end
@@ -319,14 +329,7 @@ core.register_tool("tridents:fire_trident", {
 -- Crafting recipe
 -- =============================================================================
 
-core.register_craft({
-    output = "tridents:fire_trident",
-    recipe = {
-        {"",              "default:diamond",    "default:torch"},
-        {"",              "default:obsidian",   "default:diamond"},
-        {"default:stick", "",                   ""},
-    },
-})
+-- Tridents are boss drops only (no crafting)
 
 -- =============================================================================
 -- Lightning Trident
@@ -463,14 +466,6 @@ core.register_tool("tridents:lightning_trident", {
     end,
 })
 
-core.register_craft({
-    output = "tridents:lightning_trident",
-    recipe = {
-        {"",              "default:diamond",    "default:mese_crystal"},
-        {"",              "default:steel_ingot", "default:diamond"},
-        {"default:stick", "",                    ""},
-    },
-})
 
 -- =============================================================================
 -- Wither Trident
@@ -552,14 +547,6 @@ core.register_tool("tridents:wither_trident", {
     end,
 })
 
-core.register_craft({
-    output = "tridents:wither_trident",
-    recipe = {
-        {"",              "default:diamond",    "default:obsidian"},
-        {"",              "default:obsidian",   "default:diamond"},
-        {"default:stick", "",                   ""},
-    },
-})
 
 -- =============================================================================
 -- Support Trident
@@ -665,14 +652,6 @@ core.register_tool("tridents:support_trident", {
     end,
 })
 
-core.register_craft({
-    output = "tridents:support_trident",
-    recipe = {
-        {"",              "default:diamond",     "default:apple"},
-        {"",              "default:mese_crystal", "default:diamond"},
-        {"default:stick", "",                     ""},
-    },
-})
 
 -- =============================================================================
 -- Master Trident - all powers combined
