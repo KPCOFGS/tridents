@@ -34,7 +34,7 @@ Five elemental tridents for Luanti, each with unique combat effects and passive 
 - Right-click full heal with 30 second cooldown
 - Fire and lightning immunity while in inventory
 - Highest damage and durability
-- Craft: all 4 tridents + diamond + mese block
+- Craft: all 4 tridents + diamond + mese block (requires `default` mod)
 
 ## Stats
 
@@ -52,8 +52,10 @@ Fire, Lightning, Wither, and Support tridents are **boss drops only** — defeat
 
 ## Dependencies
 
-- `default` (Minetest Game)
-- `lightning` (by sofar)
+All dependencies are optional. The mod works standalone on any game.
+
+- `default` — enables the Master Trident crafting recipe
+- `lightning` — uses real lightning strikes; without it, a visual/sound fallback is used
 
 ## License
 

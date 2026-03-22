@@ -775,14 +775,18 @@ core.register_tool("tridents:master_trident", {
     end,
 })
 
-core.register_craft({
-    output = "tridents:master_trident",
-    recipe = {
-        {"tridents:fire_trident",    "default:diamond",  "tridents:lightning_trident"},
-        {"",                          "default:mese",     ""},
-        {"tridents:wither_trident",  "",                  "tridents:support_trident"},
-    },
-})
+-- Register craft recipe if the required items exist
+local has_default = core.get_modpath("default") ~= nil
+if has_default then
+    core.register_craft({
+        output = "tridents:master_trident",
+        recipe = {
+            {"tridents:fire_trident",    "default:diamond",  "tridents:lightning_trident"},
+            {"",                          "default:mese",     ""},
+            {"tridents:wither_trident",  "",                  "tridents:support_trident"},
+        },
+    })
+end
 
 -- =============================================================================
 -- Inventory-based immunities
